@@ -1,30 +1,29 @@
-print('''Please pick one:
-            rock
-            scissors
-            paper''')
-
-while True:
-    game_dict = {'rock': 1, 'scissors': 2, 'paper': 3}
-    player_a = str(input("Player a: "))
-    player_b = str(input("Player b: "))
-    a = game_dict.get(player_a)
-    b = game_dict.get(player_b)
-    dif = a - b
-
-    if dif in [-1, 2]:
-        print('player a wins.')
-        if str(input('Do you want to play another game, yes or no?\n')) == 'yes':
-            continue
-        else:
-            print('game over.')
-            break
-    elif dif in [-2, 1]:
-        print('player b wins.')
-        if str(input('Do you want to play another game, yes or no?\n')) == 'yes':
-            continue
-        else:
-            print('game over.')
-            break
+import random
+def game(n):
+    print('Get ready!')
+    computer_choice = ['rock', 'paper', 'scissors']
+    beats = {'scissors': 'paper', 'paper': 'rock', 'rock': 'scissors'}
+    player_choice = input('(Type Rock, Paper, Scissors)').lower()
+    computer_choice = random.choice(computer_choice)
+    if computer_choice == player_choice:
+        print('Computer chose ' + computer_choice + '. You tie!')
+    elif beats[player_choice] == computer_choice:
+        print(player_choice + ' beats '+ computer_choice)
+        print('Computer chose ' + computer_choice + '. You win!')
+        ##pp = pp + 1
+    elif beats[computer_choice] == player_choice:
+        print('Computer chose ' + computer_choice + '. You lose!')
+        print(computer_choice + ' beats ' + player_choice)
+       ## cp = cp + 1
     else:
-        print('Draw.Please continue.')
-        print('')
+        print('error')
+    play_again = input('Press enter to play again or X to end the game')
+    if play_again == "":
+        game()
+    else:
+        print('Thank you for playing')
+        ##print('Player points', pp)
+        ##print('Computer points', cp)
+
+
+game()
